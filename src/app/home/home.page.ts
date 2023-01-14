@@ -50,22 +50,13 @@ export class HomePage {
   createPdf() {
     const formvalue = this.myForm?.value;
     //const image = this.photoPreview ? { image: this.photoPreview, width: 300, alignment: 'center' } : {};
+    let image = this.photoPreview ? { image: this.photoPreview as string, width: 300 } : { image: ""};
 
-    let imageobjectplaceholder = { image: ""};
-
-    if(this.photoPreview){
-      imageobjectplaceholder =  {
-          image: "this.photoPreview, width: 300, aligment: center"
-      }
-    };
 
 
     const docDefinition= {
       watermark: { text: 'Ionic Academy', color: 'blue', opacity: 0.2, bold: true },
           content: [
-            {
-              text: new Date().toTimeString()
-            },
             { text: 'REMINDER', style: 'header' },
             {
               columns: [
@@ -93,7 +84,7 @@ export class HomePage {
                 }
               ]
             },
-            imageobjectplaceholder,
+            image,
             { text: formvalue.text},
           ],
           styles: {
